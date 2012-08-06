@@ -1,0 +1,314 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		632083F715CD6B8B0002A9B7 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 632083F615CD6B8B0002A9B7 /* UIKit.framework */; };
+		632083F915CD6B8B0002A9B7 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 632083F815CD6B8B0002A9B7 /* Foundation.framework */; };
+		632083FB15CD6B8B0002A9B7 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 632083FA15CD6B8B0002A9B7 /* CoreGraphics.framework */; };
+		6320840115CD6B8B0002A9B7 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 632083FF15CD6B8B0002A9B7 /* InfoPlist.strings */; };
+		6320840315CD6B8B0002A9B7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6320840215CD6B8B0002A9B7 /* main.m */; };
+		6320840715CD6B8B0002A9B7 /* FNAImagePickerAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6320840615CD6B8B0002A9B7 /* FNAImagePickerAppDelegate.m */; };
+		6320840A15CD6B8B0002A9B7 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6320840815CD6B8B0002A9B7 /* MainStoryboard.storyboard */; };
+		6320841515CD6BE00002A9B7 /* FNAImagePickerStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6320841415CD6BE00002A9B7 /* FNAImagePickerStoryboard.storyboard */; };
+		6320841815CD6F160002A9B7 /* FNAImagePickerGroupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6320841715CD6F160002A9B7 /* FNAImagePickerGroupViewController.m */; };
+		6320841E15CE0FFB0002A9B7 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6320841D15CE0FFB0002A9B7 /* AssetsLibrary.framework */; };
+		6320842115CE3D410002A9B7 /* FNAImagePickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6320842015CE3D410002A9B7 /* FNAImagePickerController.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		632083F215CD6B8B0002A9B7 /* FNAImagePicker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FNAImagePicker.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		632083F615CD6B8B0002A9B7 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		632083F815CD6B8B0002A9B7 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		632083FA15CD6B8B0002A9B7 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		632083FE15CD6B8B0002A9B7 /* FNAImagePicker-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "FNAImagePicker-Info.plist"; sourceTree = "<group>"; };
+		6320840015CD6B8B0002A9B7 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		6320840215CD6B8B0002A9B7 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		6320840415CD6B8B0002A9B7 /* FNAImagePicker-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FNAImagePicker-Prefix.pch"; sourceTree = "<group>"; };
+		6320840515CD6B8B0002A9B7 /* FNAImagePickerAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FNAImagePickerAppDelegate.h; sourceTree = "<group>"; };
+		6320840615CD6B8B0002A9B7 /* FNAImagePickerAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FNAImagePickerAppDelegate.m; sourceTree = "<group>"; };
+		6320840915CD6B8B0002A9B7 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
+		6320841415CD6BE00002A9B7 /* FNAImagePickerStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = FNAImagePickerStoryboard.storyboard; sourceTree = "<group>"; };
+		6320841615CD6F160002A9B7 /* FNAImagePickerGroupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FNAImagePickerGroupViewController.h; sourceTree = "<group>"; };
+		6320841715CD6F160002A9B7 /* FNAImagePickerGroupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FNAImagePickerGroupViewController.m; sourceTree = "<group>"; };
+		6320841D15CE0FFB0002A9B7 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
+		6320841F15CE3D410002A9B7 /* FNAImagePickerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FNAImagePickerController.h; sourceTree = "<group>"; };
+		6320842015CE3D410002A9B7 /* FNAImagePickerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FNAImagePickerController.m; sourceTree = "<group>"; };
+		6320843B15CF55990002A9B7 /* FNAImagePickerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FNAImagePickerViewController.h; sourceTree = "<group>"; };
+		6320843C15CF55990002A9B7 /* FNAImagePickerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FNAImagePickerViewController.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		632083EF15CD6B8B0002A9B7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6320841E15CE0FFB0002A9B7 /* AssetsLibrary.framework in Frameworks */,
+				632083F715CD6B8B0002A9B7 /* UIKit.framework in Frameworks */,
+				632083F915CD6B8B0002A9B7 /* Foundation.framework in Frameworks */,
+				632083FB15CD6B8B0002A9B7 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		632083E715CD6B8B0002A9B7 = {
+			isa = PBXGroup;
+			children = (
+				6320841D15CE0FFB0002A9B7 /* AssetsLibrary.framework */,
+				632083FC15CD6B8B0002A9B7 /* FNAImagePicker */,
+				632083F515CD6B8B0002A9B7 /* Frameworks */,
+				632083F315CD6B8B0002A9B7 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		632083F315CD6B8B0002A9B7 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				632083F215CD6B8B0002A9B7 /* FNAImagePicker.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		632083F515CD6B8B0002A9B7 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				632083F615CD6B8B0002A9B7 /* UIKit.framework */,
+				632083F815CD6B8B0002A9B7 /* Foundation.framework */,
+				632083FA15CD6B8B0002A9B7 /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		632083FC15CD6B8B0002A9B7 /* FNAImagePicker */ = {
+			isa = PBXGroup;
+			children = (
+				6320841315CD6BD40002A9B7 /* class */,
+				6320840515CD6B8B0002A9B7 /* FNAImagePickerAppDelegate.h */,
+				6320840615CD6B8B0002A9B7 /* FNAImagePickerAppDelegate.m */,
+				6320840815CD6B8B0002A9B7 /* MainStoryboard.storyboard */,
+				6320843B15CF55990002A9B7 /* FNAImagePickerViewController.h */,
+				6320843C15CF55990002A9B7 /* FNAImagePickerViewController.m */,
+				632083FD15CD6B8B0002A9B7 /* Supporting Files */,
+			);
+			path = FNAImagePicker;
+			sourceTree = "<group>";
+		};
+		632083FD15CD6B8B0002A9B7 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				632083FE15CD6B8B0002A9B7 /* FNAImagePicker-Info.plist */,
+				632083FF15CD6B8B0002A9B7 /* InfoPlist.strings */,
+				6320840215CD6B8B0002A9B7 /* main.m */,
+				6320840415CD6B8B0002A9B7 /* FNAImagePicker-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		6320841315CD6BD40002A9B7 /* class */ = {
+			isa = PBXGroup;
+			children = (
+				6320841415CD6BE00002A9B7 /* FNAImagePickerStoryboard.storyboard */,
+				6320841615CD6F160002A9B7 /* FNAImagePickerGroupViewController.h */,
+				6320841715CD6F160002A9B7 /* FNAImagePickerGroupViewController.m */,
+				6320841F15CE3D410002A9B7 /* FNAImagePickerController.h */,
+				6320842015CE3D410002A9B7 /* FNAImagePickerController.m */,
+			);
+			path = class;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		632083F115CD6B8B0002A9B7 /* FNAImagePicker */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6320841015CD6B8B0002A9B7 /* Build configuration list for PBXNativeTarget "FNAImagePicker" */;
+			buildPhases = (
+				632083EE15CD6B8B0002A9B7 /* Sources */,
+				632083EF15CD6B8B0002A9B7 /* Frameworks */,
+				632083F015CD6B8B0002A9B7 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = FNAImagePicker;
+			productName = FNAImagePicker;
+			productReference = 632083F215CD6B8B0002A9B7 /* FNAImagePicker.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		632083E915CD6B8B0002A9B7 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = FNAImagePicker;
+				LastUpgradeCheck = 0440;
+				ORGANIZATIONNAME = funami;
+			};
+			buildConfigurationList = 632083EC15CD6B8B0002A9B7 /* Build configuration list for PBXProject "FNAImagePicker" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 632083E715CD6B8B0002A9B7;
+			productRefGroup = 632083F315CD6B8B0002A9B7 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				632083F115CD6B8B0002A9B7 /* FNAImagePicker */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		632083F015CD6B8B0002A9B7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6320840115CD6B8B0002A9B7 /* InfoPlist.strings in Resources */,
+				6320840A15CD6B8B0002A9B7 /* MainStoryboard.storyboard in Resources */,
+				6320841515CD6BE00002A9B7 /* FNAImagePickerStoryboard.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		632083EE15CD6B8B0002A9B7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6320840315CD6B8B0002A9B7 /* main.m in Sources */,
+				6320840715CD6B8B0002A9B7 /* FNAImagePickerAppDelegate.m in Sources */,
+				6320841815CD6F160002A9B7 /* FNAImagePickerGroupViewController.m in Sources */,
+				6320842115CE3D410002A9B7 /* FNAImagePickerController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		632083FF15CD6B8B0002A9B7 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6320840015CD6B8B0002A9B7 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		6320840815CD6B8B0002A9B7 /* MainStoryboard.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6320840915CD6B8B0002A9B7 /* en */,
+			);
+			name = MainStoryboard.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		6320840E15CD6B8B0002A9B7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		6320840F15CD6B8B0002A9B7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		6320841115CD6B8B0002A9B7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "FNAImagePicker/FNAImagePicker-Prefix.pch";
+				INFOPLIST_FILE = "FNAImagePicker/FNAImagePicker-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		6320841215CD6B8B0002A9B7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "FNAImagePicker/FNAImagePicker-Prefix.pch";
+				INFOPLIST_FILE = "FNAImagePicker/FNAImagePicker-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		632083EC15CD6B8B0002A9B7 /* Build configuration list for PBXProject "FNAImagePicker" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6320840E15CD6B8B0002A9B7 /* Debug */,
+				6320840F15CD6B8B0002A9B7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		6320841015CD6B8B0002A9B7 /* Build configuration list for PBXNativeTarget "FNAImagePicker" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6320841115CD6B8B0002A9B7 /* Debug */,
+				6320841215CD6B8B0002A9B7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 632083E915CD6B8B0002A9B7 /* Project object */;
+}
