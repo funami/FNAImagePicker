@@ -35,11 +35,11 @@
             </objects>
             <point key="canvasLocation" x="677" y="37"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Image Picker Controller-->
         <scene sceneID="ptM-PY-5iW">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PM6-vN-kgS" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <navigationController id="t4I-sL-w7b" sceneMemberID="viewController">
+                <navigationController id="t4I-sL-w7b" customClass="FNAImagePickerController" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="dTe-UI-om6">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -55,6 +55,9 @@
         </scene>
     </scenes>
     <classes>
+        <class className="FNAImagePickerController" superclassName="UINavigationController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/FNAImagePickerController.h"/>
+        </class>
         <class className="FNAImagePickerGroupViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/FNAImagePickerGroupViewController.h"/>
             <relationships>

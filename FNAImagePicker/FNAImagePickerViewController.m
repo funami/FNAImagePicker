@@ -2,12 +2,11 @@
 //  FNAImagePickerViewController.m
 //  FNAImagePicker
 //
-//  Created by funami on 2012/08/04.
+//  Created by funami on 2012/08/06.
 //  Copyright (c) 2012年 funami. All rights reserved.
 //
 
 #import "FNAImagePickerViewController.h"
-#import "FNAImagePickerController.h"
 
 @interface FNAImagePickerViewController ()
 
@@ -15,10 +14,19 @@
 
 @implementation FNAImagePickerViewController
 
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+{
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if (self) {
+        // Custom initialization
+    }
+    return self;
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
+	// Do any additional setup after loading the view.
 }
 
 - (void)viewDidUnload
@@ -29,23 +37,7 @@
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
-    return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
-}
-
-- (IBAction)selectPhoto:(id)sender {
-    /*
-    UIStoryboard *imagePickerStoryboard = [UIStoryboard storyboardWithName:@"FNAImagePickerStoryboard" bundle:nil];
-    UINavigationController *vc = [imagePickerStoryboard instantiateInitialViewController];
-    */
-    FNAImagePickerController *vc = [[FNAImagePickerController alloc] init];
-    [self presentViewController:vc animated:YES completion:nil];
-}
-
-- (void) imagePickerGroupViewControllerDidCanceled:(FNAImagePickerController *)imagePickerNavigationController{
-    [self dismissModalViewControllerAnimated:YES];
-}
-- (void) imagePickerGroupViewControllerDidFinished:(FNAImagePickerController *)imagePickerNavigationController withInfo:(NSDictionary *)info{
-    
+    return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
 @end
