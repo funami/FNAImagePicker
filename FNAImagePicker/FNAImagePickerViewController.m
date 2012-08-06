@@ -40,4 +40,21 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
+- (IBAction)selectPhoto:(id)sender {
+    FNAImagePickerController *pickerUI = [[FNAImagePickerController alloc] init];
+    pickerUI.delegate = self;
+    [self presentViewController:pickerUI animated:YES completion:nil];
+}
+
+#pragma mark - FNAImagePickerControllerDelegate
+- (void)imagePickerController:(FNAImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
+{
+    
+}
+- (void)imagePickerControllerDidCancel:(FNAImagePickerController *)picker
+{
+    [self dismissModalViewControllerAnimated:YES];
+}
+
+
 @end

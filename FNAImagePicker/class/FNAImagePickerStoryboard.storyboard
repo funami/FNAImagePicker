@@ -30,7 +30,13 @@
                             <outlet property="delegate" destination="IyY-NX-f2C" id="4Qy-fK-TXa"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="e3j-AJ-EIZ"/>
+                    <navigationItem key="navigationItem" id="e3j-AJ-EIZ">
+                        <barButtonItem key="rightBarButtonItem" systemItem="cancel" id="oFz-rs-ydY">
+                            <connections>
+                                <action selector="cancel:" destination="IyY-NX-f2C" id="mf9-2x-czQ"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
             </objects>
             <point key="canvasLocation" x="677" y="37"/>
@@ -54,17 +60,6 @@
             <point key="canvasLocation" x="151" y="37"/>
         </scene>
     </scenes>
-    <classes>
-        <class className="FNAImagePickerController" superclassName="UINavigationController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/FNAImagePickerController.h"/>
-        </class>
-        <class className="FNAImagePickerGroupViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/FNAImagePickerGroupViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="cancel:"/>
-            </relationships>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

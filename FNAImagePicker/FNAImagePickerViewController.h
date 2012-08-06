@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "FNAImagePickerController.h"
 
-@interface FNAImagePickerViewController : UIViewController
 
+@interface FNAImagePickerViewController : UIViewController<UINavigationControllerDelegate,FNAImagePickerControllerDelegate>
+
+- (IBAction)selectPhoto:(id)sender;
 @end

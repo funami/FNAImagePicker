@@ -7,9 +7,18 @@
 //
 
 #import <UIKit/UIKit.h>
+@class FNAImagePickerController;
+@protocol FNAImagePickerControllerDelegate<NSObject>
+@optional
+- (void)imagePickerController:(FNAImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info;
+- (void)imagePickerControllerDidCancel:(FNAImagePickerController *)picker;
+
+@end
 
 @interface FNAImagePickerController : UINavigationController
 
-@property (nonatomic, assign) id<UINavigationControllerDelegate, UIImagePickerControllerDelegate> delegate;
+@property (nonatomic, assign) id<UINavigationControllerDelegate, FNAImagePickerControllerDelegate> delegate;
+
+- (void)cancel;
 
 @end

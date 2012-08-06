@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "FNAImagePickerController.h"
 
 @interface FNAImagePickerGroupViewController : UITableViewController
 

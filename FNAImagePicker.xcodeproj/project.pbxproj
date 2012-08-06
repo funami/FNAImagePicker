@@ -18,6 +18,7 @@
 		6320841815CD6F160002A9B7 /* FNAImagePickerGroupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6320841715CD6F160002A9B7 /* FNAImagePickerGroupViewController.m */; };
 		6320841E15CE0FFB0002A9B7 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6320841D15CE0FFB0002A9B7 /* AssetsLibrary.framework */; };
 		6320842115CE3D410002A9B7 /* FNAImagePickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6320842015CE3D410002A9B7 /* FNAImagePickerController.m */; };
+		6320843F15CF5A410002A9B7 /* FNAImagePickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6320843E15CF5A410002A9B7 /* FNAImagePickerViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,8 +39,8 @@
 		6320841D15CE0FFB0002A9B7 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
 		6320841F15CE3D410002A9B7 /* FNAImagePickerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FNAImagePickerController.h; sourceTree = "<group>"; };
 		6320842015CE3D410002A9B7 /* FNAImagePickerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FNAImagePickerController.m; sourceTree = "<group>"; };
-		6320843B15CF55990002A9B7 /* FNAImagePickerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FNAImagePickerViewController.h; sourceTree = "<group>"; };
-		6320843C15CF55990002A9B7 /* FNAImagePickerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FNAImagePickerViewController.m; sourceTree = "<group>"; };
+		6320843D15CF5A410002A9B7 /* FNAImagePickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FNAImagePickerViewController.h; sourceTree = "<group>"; };
+		6320843E15CF5A410002A9B7 /* FNAImagePickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FNAImagePickerViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,8 +93,8 @@
 				6320840515CD6B8B0002A9B7 /* FNAImagePickerAppDelegate.h */,
 				6320840615CD6B8B0002A9B7 /* FNAImagePickerAppDelegate.m */,
 				6320840815CD6B8B0002A9B7 /* MainStoryboard.storyboard */,
-				6320843B15CF55990002A9B7 /* FNAImagePickerViewController.h */,
-				6320843C15CF55990002A9B7 /* FNAImagePickerViewController.m */,
+				6320843D15CF5A410002A9B7 /* FNAImagePickerViewController.h */,
+				6320843E15CF5A410002A9B7 /* FNAImagePickerViewController.m */,
 				632083FD15CD6B8B0002A9B7 /* Supporting Files */,
 			);
 			path = FNAImagePicker;
@@ -191,6 +192,7 @@
 				6320840715CD6B8B0002A9B7 /* FNAImagePickerAppDelegate.m in Sources */,
 				6320841815CD6F160002A9B7 /* FNAImagePickerGroupViewController.m in Sources */,
 				6320842115CE3D410002A9B7 /* FNAImagePickerController.m in Sources */,
+				6320843F15CF5A410002A9B7 /* FNAImagePickerViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

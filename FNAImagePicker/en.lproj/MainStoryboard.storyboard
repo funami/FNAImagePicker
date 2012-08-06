@@ -27,17 +27,25 @@
             </objects>
             <point key="canvasLocation" x="243" y="68"/>
         </scene>
-        <!--View Controller-->
+        <!--Image Picker View Controller-->
         <scene sceneID="3Io-70-Jc6">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0l8-h8-6x7" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <viewController id="azd-QN-QsA" sceneMemberID="viewController">
+                <viewController id="azd-QN-QsA" customClass="FNAImagePickerViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="7lh-wh-wqr">
                         <rect key="frame" x="0.0" y="64" width="320" height="372"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
+                    <toolbarItems>
+                        <barButtonItem title="Photo" id="CUd-NA-nGH">
+                            <connections>
+                                <action selector="selectPhoto:" destination="azd-QN-QsA" id="LvY-wa-LJO"/>
+                            </connections>
+                        </barButtonItem>
+                    </toolbarItems>
                     <navigationItem key="navigationItem" id="gWQ-2F-4cs"/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                 </viewController>
             </objects>
             <point key="canvasLocation" x="653" y="70"/>

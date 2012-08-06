@@ -169,6 +169,6 @@
 }
 
 - (IBAction)cancel:(id)sender {
-    //[_delegate imagePickerGroupViewControllerDidCanceled:self];
+    [(FNAImagePickerController *)self.navigationController cancel];
 }
 @end
