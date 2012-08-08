@@ -8,6 +8,7 @@
 
 #import "FNAImagePickerGroupViewController.h"
 #import <AssetsLibrary/AssetsLibrary.h>
+#import "FNAImagePickerGroupCell.h"
 
 
 @interface FNAImagePickerGroupViewController ()
@@ -51,7 +52,8 @@
     ALAssetsLibraryGroupsEnumerationResultsBlock listGroupBlock = ^(ALAssetsGroup *group, BOOL *stop) {
         
         if (group) {
-            [_groups addObject:group];
+            //[_groups addObject:group];
+            [_groups insertObject:group atIndex:0];
         } else {
             [self.tableView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:NO];
         }
@@ -63,6 +65,8 @@
     
     NSUInteger groupTypes = ALAssetsGroupAll | ALAssetsGroupEvent | ALAssetsGroupFaces;
     [_assetsLibrary enumerateGroupsWithTypes:groupTypes usingBlock:listGroupBlock failureBlock:failureBlock];
+    
+    self.title = NSLocalizedString(@"Albums", @"Albums");
 
 }
 
@@ -92,26 +96,28 @@
     return [_groups count];
 }
 
-- (void)configureCell:(UITableViewCell *)cell indexPath:(NSIndexPath *)indexPath
+- (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
 {
+    FNAImagePickerGroupCell *gCell = (FNAImagePickerGroupCell *)cell;
     ALAssetsGroup *groupForCell = [_groups objectAtIndex:indexPath.row];
     CGImageRef posterImageRef = [groupForCell posterImage];
     UIImage *posterImage = [UIImage imageWithCGImage:posterImageRef];
-    cell.imageView.image = posterImage;
+    gCell.myImageView.image = posterImage;
     NSString *cellText = [groupForCell valueForProperty:ALAssetsGroupPropertyName];
     int photoCount = [groupForCell numberOfAssets];
-    cell.textLabel.text = [NSString stringWithFormat:@"%@ (%d)",cellText,photoCount];
-    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-
+    gCell.nameTextLabel.text = cellText;
+    gCell.countTextLabel.text = [NSString stringWithFormat:@"(%d)",photoCount];
+    //gCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"FNAImagePIckerGroupCell";
+    static NSString *CellIdentifier = @"FNAImagePickerGroupCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
     // Configure the cell...
-    [self configureCell:cell indexPath:indexPath];
+    [self configureCell:cell atIndexPath:indexPath];
     
     return cell;
 }

@@ -19,6 +19,7 @@
 		6320841E15CE0FFB0002A9B7 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6320841D15CE0FFB0002A9B7 /* AssetsLibrary.framework */; };
 		6320842115CE3D410002A9B7 /* FNAImagePickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6320842015CE3D410002A9B7 /* FNAImagePickerController.m */; };
 		6320843F15CF5A410002A9B7 /* FNAImagePickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6320843E15CF5A410002A9B7 /* FNAImagePickerViewController.m */; };
+		6320845315D003CB0002A9B7 /* FNAImagePickerGroupCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6320844D15CFFE470002A9B7 /* FNAImagePickerGroupCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -41,6 +42,8 @@
 		6320842015CE3D410002A9B7 /* FNAImagePickerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FNAImagePickerController.m; sourceTree = "<group>"; };
 		6320843D15CF5A410002A9B7 /* FNAImagePickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FNAImagePickerViewController.h; sourceTree = "<group>"; };
 		6320843E15CF5A410002A9B7 /* FNAImagePickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FNAImagePickerViewController.m; sourceTree = "<group>"; };
+		6320844C15CFFE470002A9B7 /* FNAImagePickerGroupCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FNAImagePickerGroupCell.h; sourceTree = "<group>"; };
+		6320844D15CFFE470002A9B7 /* FNAImagePickerGroupCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FNAImagePickerGroupCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,6 +122,8 @@
 				6320841715CD6F160002A9B7 /* FNAImagePickerGroupViewController.m */,
 				6320841F15CE3D410002A9B7 /* FNAImagePickerController.h */,
 				6320842015CE3D410002A9B7 /* FNAImagePickerController.m */,
+				6320844C15CFFE470002A9B7 /* FNAImagePickerGroupCell.h */,
+				6320844D15CFFE470002A9B7 /* FNAImagePickerGroupCell.m */,
 			);
 			path = class;
 			sourceTree = "<group>";
@@ -193,6 +198,7 @@
 				6320841815CD6F160002A9B7 /* FNAImagePickerGroupViewController.m in Sources */,
 				6320842115CE3D410002A9B7 /* FNAImagePickerController.m in Sources */,
 				6320843F15CF5A410002A9B7 /* FNAImagePickerViewController.m in Sources */,
+				6320845315D003CB0002A9B7 /* FNAImagePickerGroupCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
