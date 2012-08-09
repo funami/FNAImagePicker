@@ -20,6 +20,9 @@
 		6320842115CE3D410002A9B7 /* FNAImagePickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6320842015CE3D410002A9B7 /* FNAImagePickerController.m */; };
 		6320843F15CF5A410002A9B7 /* FNAImagePickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6320843E15CF5A410002A9B7 /* FNAImagePickerViewController.m */; };
 		6320845315D003CB0002A9B7 /* FNAImagePickerGroupCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6320844D15CFFE470002A9B7 /* FNAImagePickerGroupCell.m */; };
+		632E523E15D2A38900EAEDFD /* FNAAlbumContentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 632E523D15D2A38900EAEDFD /* FNAAlbumContentsViewController.m */; };
+		632E524615D2A68000EAEDFD /* FNAAlbumContentsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 632E524515D2A68000EAEDFD /* FNAAlbumContentsTableViewCell.m */; };
+		633B630F15D3958600B3B50D /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 633B630E15D3958600B3B50D /* MobileCoreServices.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +47,11 @@
 		6320843E15CF5A410002A9B7 /* FNAImagePickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FNAImagePickerViewController.m; sourceTree = "<group>"; };
 		6320844C15CFFE470002A9B7 /* FNAImagePickerGroupCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FNAImagePickerGroupCell.h; sourceTree = "<group>"; };
 		6320844D15CFFE470002A9B7 /* FNAImagePickerGroupCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FNAImagePickerGroupCell.m; sourceTree = "<group>"; };
+		632E523C15D2A38900EAEDFD /* FNAAlbumContentsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FNAAlbumContentsViewController.h; sourceTree = "<group>"; };
+		632E523D15D2A38900EAEDFD /* FNAAlbumContentsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FNAAlbumContentsViewController.m; sourceTree = "<group>"; };
+		632E524415D2A68000EAEDFD /* FNAAlbumContentsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FNAAlbumContentsTableViewCell.h; sourceTree = "<group>"; };
+		632E524515D2A68000EAEDFD /* FNAAlbumContentsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FNAAlbumContentsTableViewCell.m; sourceTree = "<group>"; };
+		633B630E15D3958600B3B50D /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,6 +59,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				633B630F15D3958600B3B50D /* MobileCoreServices.framework in Frameworks */,
 				6320841E15CE0FFB0002A9B7 /* AssetsLibrary.framework in Frameworks */,
 				632083F715CD6B8B0002A9B7 /* UIKit.framework in Frameworks */,
 				632083F915CD6B8B0002A9B7 /* Foundation.framework in Frameworks */,
@@ -64,6 +73,7 @@
 		632083E715CD6B8B0002A9B7 = {
 			isa = PBXGroup;
 			children = (
+				633B630E15D3958600B3B50D /* MobileCoreServices.framework */,
 				6320841D15CE0FFB0002A9B7 /* AssetsLibrary.framework */,
 				632083FC15CD6B8B0002A9B7 /* FNAImagePicker */,
 				632083F515CD6B8B0002A9B7 /* Frameworks */,
@@ -124,6 +134,10 @@
 				6320842015CE3D410002A9B7 /* FNAImagePickerController.m */,
 				6320844C15CFFE470002A9B7 /* FNAImagePickerGroupCell.h */,
 				6320844D15CFFE470002A9B7 /* FNAImagePickerGroupCell.m */,
+				632E523C15D2A38900EAEDFD /* FNAAlbumContentsViewController.h */,
+				632E523D15D2A38900EAEDFD /* FNAAlbumContentsViewController.m */,
+				632E524415D2A68000EAEDFD /* FNAAlbumContentsTableViewCell.h */,
+				632E524515D2A68000EAEDFD /* FNAAlbumContentsTableViewCell.m */,
 			);
 			path = class;
 			sourceTree = "<group>";
@@ -199,6 +213,8 @@
 				6320842115CE3D410002A9B7 /* FNAImagePickerController.m in Sources */,
 				6320843F15CF5A410002A9B7 /* FNAImagePickerViewController.m in Sources */,
 				6320845315D003CB0002A9B7 /* FNAImagePickerGroupCell.m in Sources */,
+				632E523E15D2A38900EAEDFD /* FNAAlbumContentsViewController.m in Sources */,
+				632E524615D2A68000EAEDFD /* FNAAlbumContentsTableViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

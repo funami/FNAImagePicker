@@ -8,7 +8,10 @@
 
 #import "FNAImagePickerGroupViewController.h"
 #import <AssetsLibrary/AssetsLibrary.h>
+#import <MobileCoreServices/MobileCoreServices.h>
 #import "FNAImagePickerGroupCell.h"
+#import "FNAAlbumContentsViewController.h"
+#import "FNAImagePickerController.h"
 
 
 @interface FNAImagePickerGroupViewController ()
@@ -100,10 +103,27 @@
 {
     FNAImagePickerGroupCell *gCell = (FNAImagePickerGroupCell *)cell;
     ALAssetsGroup *groupForCell = [_groups objectAtIndex:indexPath.row];
+    
+    FNAImagePickerController *picker = (FNAImagePickerController *)[self navigationController];
+    if (picker.mediaTypes.count == 1){
+        if ([picker.mediaTypes[0] isEqualToString:(NSString *)kUTTypeImage]){
+            ALAssetsFilter *onlyPhotosFilter = [ALAssetsFilter allPhotos];
+            [groupForCell setAssetsFilter:onlyPhotosFilter];
+        }else if ([picker.mediaTypes[0] isEqualToString:(NSString *)kUTTypeVideo]){
+            ALAssetsFilter *onlyPhotosFilter = [ALAssetsFilter allVideos];
+            [groupForCell setAssetsFilter:onlyPhotosFilter];
+        }
+    }
+        
+        
+     
+
     CGImageRef posterImageRef = [groupForCell posterImage];
     UIImage *posterImage = [UIImage imageWithCGImage:posterImageRef];
     gCell.myImageView.image = posterImage;
     NSString *cellText = [groupForCell valueForProperty:ALAssetsGroupPropertyName];
+    
+    
     int photoCount = [groupForCell numberOfAssets];
     gCell.nameTextLabel.text = cellText;
     gCell.countTextLabel.text = [NSString stringWithFormat:@"(%d)",photoCount];
@@ -122,44 +142,15 @@
     return cell;
 }
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
+    if ([[segue identifier] isEqualToString:@"showAlbumContents"]) {
+        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+        ALAssetsGroup *groupForCell = [_groups objectAtIndex:indexPath.row];
+        [[segue destinationViewController] setAssetsGroup:groupForCell];
+    }
 }
-*/
 
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
 
 #pragma mark - Table view delegate
 

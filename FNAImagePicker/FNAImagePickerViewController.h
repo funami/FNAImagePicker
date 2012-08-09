@@ -13,4 +13,6 @@
 @interface FNAImagePickerViewController : UIViewController<UINavigationControllerDelegate,FNAImagePickerControllerDelegate>
 
 - (IBAction)selectPhoto:(id)sender;
+- (IBAction)selectVideo:(id)sender;
+
 @end

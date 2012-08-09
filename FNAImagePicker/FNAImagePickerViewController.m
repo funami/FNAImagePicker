@@ -7,6 +7,7 @@
 //
 
 #import "FNAImagePickerViewController.h"
+#import <MobileCoreServices/MobileCoreServices.h>
 
 @interface FNAImagePickerViewController ()
 
@@ -43,6 +44,14 @@
 - (IBAction)selectPhoto:(id)sender {
     FNAImagePickerController *pickerUI = [[FNAImagePickerController alloc] init];
     pickerUI.delegate = self;
+    pickerUI.mediaTypes = [[NSArray alloc] initWithObjects: (NSString *) kUTTypeImage, nil];
+    [self presentViewController:pickerUI animated:YES completion:nil];
+}
+
+- (IBAction)selectVideo:(id)sender {
+    FNAImagePickerController *pickerUI = [[FNAImagePickerController alloc] init];
+    pickerUI.delegate = self;
+    pickerUI.mediaTypes = [[NSArray alloc] initWithObjects: (NSString *) kUTTypeVideo, nil];
     [self presentViewController:pickerUI animated:YES completion:nil];
 }
 

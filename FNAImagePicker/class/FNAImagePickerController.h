@@ -18,6 +18,7 @@
 @interface FNAImagePickerController : UINavigationController
 
 @property (nonatomic, assign) id<UINavigationControllerDelegate, FNAImagePickerControllerDelegate> delegate;
+@property (nonatomic, copy) NSArray *mediaTypes;
 
 - (void)cancel;
 

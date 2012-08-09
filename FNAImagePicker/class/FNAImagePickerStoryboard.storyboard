@@ -47,6 +47,7 @@
                                     <outlet property="countTextLabel" destination="k3a-Od-B0n" id="zeC-SE-JeM"/>
                                     <outlet property="myImageView" destination="dfn-9Z-KCI" id="3PX-xm-Avd"/>
                                     <outlet property="nameTextLabel" destination="45Y-xy-yIs" id="ws0-mZ-aaT"/>
+                                    <segue destination="sD2-h4-tnp" kind="push" identifier="showAlbumContents" id="GnK-SS-95N"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -65,6 +66,60 @@
                 </tableViewController>
             </objects>
             <point key="canvasLocation" x="677" y="37"/>
+        </scene>
+        <!--Album Contents View Controller-->
+        <scene sceneID="cRb-Ms-R1R">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hG2-Cw-oHv" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tableViewController id="sD2-h4-tnp" customClass="FNAAlbumContentsViewController" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="78" sectionHeaderHeight="22" sectionFooterHeight="22" id="eCJ-GT-Wub">
+                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="FNAAlbumContentsTableViewCell" id="nfE-iV-GGd" customClass="FNAAlbumContentsTableViewCell">
+                                <rect key="frame" x="0.0" y="22" width="320" height="78"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="77"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" id="fCL-vA-S63">
+                                            <rect key="frame" x="2" y="2" width="76" height="76"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        </imageView>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" id="TLh-Tm-FMJ">
+                                            <rect key="frame" x="81" y="2" width="76" height="76"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        </imageView>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" id="63D-SD-cAv">
+                                            <rect key="frame" x="161" y="2" width="76" height="76"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        </imageView>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" id="E5i-Xe-FHu">
+                                            <rect key="frame" x="240" y="2" width="76" height="76"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        </imageView>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                                <connections>
+                                    <outlet property="photo1" destination="fCL-vA-S63" id="6gc-Gu-0fr"/>
+                                    <outlet property="photo2" destination="TLh-Tm-FMJ" id="YJz-Mb-1EG"/>
+                                    <outlet property="photo3" destination="63D-SD-cAv" id="Ibi-J8-DoO"/>
+                                    <outlet property="photo4" destination="E5i-Xe-FHu" id="bSD-30-FOz"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="sD2-h4-tnp" id="8Jg-5H-Y2c"/>
+                            <outlet property="delegate" destination="sD2-h4-tnp" id="9Mc-ay-4Rs"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="GqY-Zv-NFo"/>
+                </tableViewController>
+            </objects>
+            <point key="canvasLocation" x="1081" y="37"/>
         </scene>
         <!--Image Picker Controller-->
         <scene sceneID="ptM-PY-5iW">
@@ -87,6 +142,18 @@
         </scene>
     </scenes>
     <classes>
+        <class className="FNAAlbumContentsTableViewCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/FNAAlbumContentsTableViewCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="photo1" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="photo2" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="photo3" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="photo4" candidateClass="UIImageView"/>
+            </relationships>
+        </class>
+        <class className="FNAAlbumContentsViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/FNAAlbumContentsViewController.h"/>
+        </class>
         <class className="FNAImagePickerController" superclassName="UINavigationController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/FNAImagePickerController.h"/>
         </class>
