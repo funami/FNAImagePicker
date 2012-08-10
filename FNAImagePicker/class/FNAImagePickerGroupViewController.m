@@ -106,10 +106,10 @@
     
     FNAImagePickerController *picker = (FNAImagePickerController *)[self navigationController];
     if (picker.mediaTypes.count == 1){
-        if ([picker.mediaTypes[0] isEqualToString:(NSString *)kUTTypeImage]){
+        if ([[picker.mediaTypes objectAtIndex:0] isEqualToString:(NSString *)kUTTypeImage]){
             ALAssetsFilter *onlyPhotosFilter = [ALAssetsFilter allPhotos];
             [groupForCell setAssetsFilter:onlyPhotosFilter];
-        }else if ([picker.mediaTypes[0] isEqualToString:(NSString *)kUTTypeVideo]){
+        }else if ([[picker.mediaTypes objectAtIndex:0] isEqualToString:(NSString *)kUTTypeVideo]){
             ALAssetsFilter *onlyPhotosFilter = [ALAssetsFilter allVideos];
             [groupForCell setAssetsFilter:onlyPhotosFilter];
         }

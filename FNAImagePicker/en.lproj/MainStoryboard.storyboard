@@ -56,15 +56,6 @@
             <point key="canvasLocation" x="653" y="70"/>
         </scene>
     </scenes>
-    <classes>
-        <class className="FNAImagePickerViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/FNAImagePickerViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="selectPhoto:"/>
-                <relationship kind="action" name="selectVideo:"/>
-            </relationships>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

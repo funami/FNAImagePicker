@@ -84,7 +84,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="77"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" id="fCL-vA-S63">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" id="fCL-vA-S63">
                                             <rect key="frame" x="2" y="2" width="76" height="76"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         </imageView>
