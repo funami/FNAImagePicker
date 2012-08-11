@@ -14,5 +14,11 @@
 @property (nonatomic,weak) IBOutlet UIImageView *photo2;
 @property (nonatomic,weak) IBOutlet UIImageView *photo3;
 @property (nonatomic,weak) IBOutlet UIImageView *photo4;
+@property (weak, nonatomic) IBOutlet UIButton *photoButton1;
+@property (weak, nonatomic) IBOutlet UIButton *photoButton2;
+@property (weak, nonatomic) IBOutlet UIButton *photoButton3;
+@property (weak, nonatomic) IBOutlet UIButton *photoButton4;
+
+@property (nonatomic, assign) NSUInteger rowNumber;
 
 @end

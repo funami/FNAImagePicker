@@ -17,6 +17,7 @@
 
 @interface FNAImagePickerController : UINavigationController
 
+@property (nonatomic, assign) UIStatusBarStyle orgStatusBarStyle;
 @property (nonatomic, assign) id<UINavigationControllerDelegate, FNAImagePickerControllerDelegate> delegate;
 @property (nonatomic, copy) NSArray *mediaTypes;
 

@@ -9,8 +9,11 @@
 #import <UIKit/UIKit.h>
 #import <AssetsLibrary/AssetsLibrary.h>
 
+
+
 @interface FNAAlbumContentsViewController : UITableViewController
 
 @property (nonatomic, retain) ALAssetsGroup *assetsGroup;
-
+@property (nonatomic, assign) BOOL useAspectRatioThumbnail;
+- (IBAction)toggleThumbnail:(id)sender;
 @end

@@ -27,6 +27,7 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    self.orgStatusBarStyle = [UIApplication sharedApplication].statusBarStyle;
 }
 
 - (void)viewDidUnload
@@ -35,12 +36,21 @@
     // Release any retained subviews of the main view.
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleBlackTranslucent]; // スタイルの設定
+
+}
+
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
 - (void)cancel{
+    [[UIApplication sharedApplication] setStatusBarStyle:self.orgStatusBarStyle];// スタイルもどす
+
     [self.delegate imagePickerControllerDidCancel:self];
 }
 

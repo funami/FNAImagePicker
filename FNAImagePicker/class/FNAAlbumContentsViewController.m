@@ -10,6 +10,7 @@
 #import "FNAAlbumContentsTableViewCell.h"
 #import "FNAImagePickerController.h"
 #import <MobileCoreServices/MobileCoreServices.h>
+#import "FNAImagePickerDetailViewController.h"
 
 @interface FNAAlbumContentsViewController ()
 @property (nonatomic,strong) NSMutableArray *assets;
@@ -48,7 +49,8 @@
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+    //return (interfaceOrientation == UIInterfaceOrientationPortrait);
+    return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
 }
 
 
@@ -86,6 +88,17 @@
     
 }
 
+#pragma mark - propaty
+- (void)setUseAspectRatioThumbnail:(BOOL)useAspectRatioThumbnail
+{
+    if (_useAspectRatioThumbnail != useAspectRatioThumbnail){
+        _useAspectRatioThumbnail = useAspectRatioThumbnail;
+        for (UITableViewCell* cell in [self.tableView visibleCells]) {
+            [self configureCell:cell atIndexPath:[self.tableView indexPathForCell:cell]];
+        }
+    }
+}
+
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -107,9 +120,18 @@
     NSUInteger lastPhotoInCell  = firstPhotoInCell + 4;
     FNAAlbumContentsTableViewCell *acell = (FNAAlbumContentsTableViewCell *)cell;
     acell.photo1.image = nil;
+    acell.photo1.backgroundColor = nil;
     acell.photo2.image = nil;
+    acell.photo2.backgroundColor = nil;
     acell.photo3.image = nil;
+    acell.photo3.backgroundColor = nil;
     acell.photo4.image = nil;
+    acell.photo4.backgroundColor = nil;
+    acell.photoButton1.enabled = NO;
+    acell.photoButton2.enabled = NO;
+    acell.photoButton3.enabled = NO;
+    acell.photoButton4.enabled = NO;
+    acell.rowNumber = indexPath.row;
     
     if (_assets.count > firstPhotoInCell) {
     
@@ -118,21 +140,38 @@
         for ( ; firstPhotoInCell + currentPhotoIndex < lastPhotoIndex ; currentPhotoIndex++) {
             
             ALAsset *asset = [_assets objectAtIndex:firstPhotoInCell + currentPhotoIndex];
-            CGImageRef thumbnailImageRef = [asset thumbnail];
+            CGImageRef thumbnailImageRef ;
+            if (_useAspectRatioThumbnail){
+                thumbnailImageRef = [asset aspectRatioThumbnail];
+            }else{
+                thumbnailImageRef = [asset thumbnail];
+            }
             UIImage *thumbnail = [UIImage imageWithCGImage:thumbnailImageRef];
             
             switch (currentPhotoIndex) {
                 case 0:
                     acell.photo1.image = thumbnail;
+                    acell.photo1.backgroundColor = [UIColor blackColor];
+                    acell.photoButton1.tag = firstPhotoInCell + currentPhotoIndex ;
+                    acell.photoButton1.enabled = YES;
                     break;
                 case 1:
                     acell.photo2.image = thumbnail;
+                    acell.photo2.backgroundColor = [UIColor blackColor];
+                    acell.photoButton2.tag = firstPhotoInCell + currentPhotoIndex;
+                    acell.photoButton2.enabled = YES;
                     break;
                 case 2:
                     acell.photo3.image = thumbnail;
+                    acell.photo3.backgroundColor = [UIColor blackColor];
+                    acell.photoButton3.tag = firstPhotoInCell + currentPhotoIndex;
+                    acell.photoButton3.enabled = YES;
                     break;
                 case 3:
                     acell.photo4.image = thumbnail;
+                    acell.photo4.backgroundColor = [UIColor blackColor];
+                    acell.photoButton4.tag = firstPhotoInCell + currentPhotoIndex;
+                    acell.photoButton4.enabled = YES;
                     break;
                 default:
                     break;
@@ -151,44 +190,13 @@
     return cell;
 }
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
+    NSUInteger tag = [(UIButton *)sender tag];
+    ALAsset *asset = [_assets objectAtIndex:tag];
+    [[segue destinationViewController] setAsset:asset];
 
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
 }
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
 
 #pragma mark - Table view delegate
 
@@ -203,4 +211,7 @@
      */
 }
 
+- (IBAction)toggleThumbnail:(id)sender {
+    self.useAspectRatioThumbnail = !self.useAspectRatioThumbnail;
+}
 @end

@@ -33,16 +33,8 @@
     return self;
 }
 
-- (void)viewDidLoad
+- (void)loadAsetts
 {
-    [super viewDidLoad];
-
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
- 
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    
     if (!_assetsLibrary) {
         _assetsLibrary = [[ALAssetsLibrary alloc] init];
     }
@@ -55,8 +47,10 @@
     ALAssetsLibraryGroupsEnumerationResultsBlock listGroupBlock = ^(ALAssetsGroup *group, BOOL *stop) {
         
         if (group) {
-            //[_groups addObject:group];
-            [_groups insertObject:group atIndex:0];
+            if ([group numberOfAssets] > 0){
+                [_groups addObject:group];
+            }
+            //[_groups insertObject:group atIndex:0];
         } else {
             [self.tableView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:NO];
         }
@@ -66,8 +60,21 @@
         
     };
     
-    NSUInteger groupTypes = ALAssetsGroupAll | ALAssetsGroupEvent | ALAssetsGroupFaces;
+    NSUInteger groupTypes = ALAssetsGroupSavedPhotos |ALAssetsGroupAlbum;
     [_assetsLibrary enumerateGroupsWithTypes:groupTypes usingBlock:listGroupBlock failureBlock:failureBlock];
+}
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+
+    // Uncomment the following line to preserve selection between presentations.
+    // self.clearsSelectionOnViewWillAppear = NO;
+ 
+    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
+    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    
+
     
     self.title = NSLocalizedString(@"Albums", @"Albums");
 
@@ -80,9 +87,16 @@
     // e.g. self.myOutlet = nil;
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self loadAsetts];
+}
+
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+    //return (interfaceOrientation == UIInterfaceOrientationPortrait);
+    return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
 }
 
 #pragma mark - Table view data source
