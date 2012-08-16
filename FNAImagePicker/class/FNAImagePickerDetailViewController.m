@@ -51,6 +51,7 @@
 {
     //return (interfaceOrientation == UIInterfaceOrientationPortrait);
     return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
+    //return YES;
 }
 
 @end

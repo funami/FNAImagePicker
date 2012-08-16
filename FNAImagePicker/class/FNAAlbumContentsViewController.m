@@ -12,8 +12,15 @@
 #import <MobileCoreServices/MobileCoreServices.h>
 #import "FNAImagePickerDetailViewController.h"
 
+#define DEFAULT_LANDSCAPE_COLUMN_NUMBER 6
+#define DEFAULT_PORTLATE_COLUMN_NUMBER 4
+
 @interface FNAAlbumContentsViewController ()
+{
+    NSUInteger _lastSeletedPhotoIndex;
+}
 @property (nonatomic,strong) NSMutableArray *assets;
+@property (nonatomic,assign) FNAImagePickerThumbnailView *lastSeletedThumbnailView;
 @end
 
 @implementation FNAAlbumContentsViewController
@@ -38,6 +45,7 @@
  
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    _lastSeletedPhotoIndex = NSNotFound;
 }
 
 - (void)viewDidUnload
@@ -52,11 +60,44 @@
     //return (interfaceOrientation == UIInterfaceOrientationPortrait);
     return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
 }
+- (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
+{
+    switch (toInterfaceOrientation) {
+        case UIInterfaceOrientationLandscapeLeft:
+        case UIInterfaceOrientationLandscapeRight:
+            self.columnCount = DEFAULT_LANDSCAPE_COLUMN_NUMBER;
+            break;
+            
+        default:
+            self.columnCount = DEFAULT_PORTLATE_COLUMN_NUMBER;
+            break;
+    }
+    [self.tableView reloadData];
+    if (_lastSeletedPhotoIndex != NSNotFound){
+        NSUInteger row = floor(_lastSeletedPhotoIndex /self.columnCount );
+        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:row -1 inSection:0];
+        [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionMiddle animated:NO];
+    }
+   
+}
 
-
+- (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation duration:(NSTimeInterval)duration
+{
+}
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    
+    switch (self.interfaceOrientation) {
+        case UIInterfaceOrientationLandscapeLeft:
+        case UIInterfaceOrientationLandscapeRight:
+            self.columnCount = DEFAULT_LANDSCAPE_COLUMN_NUMBER;
+            break;
+            
+        default:
+            self.columnCount = DEFAULT_PORTLATE_COLUMN_NUMBER;
+            break;
+    }
     
     self.title = [_assetsGroup valueForProperty:ALAssetsGroupPropertyName];
     
@@ -85,7 +126,12 @@
     }
     
     [_assetsGroup enumerateAssetsUsingBlock:assetsEnumerationBlock];
-    
+    [self.tableView reloadData];
+    if (_lastSeletedPhotoIndex != NSNotFound){
+        NSUInteger row = floor(_lastSeletedPhotoIndex /self.columnCount );
+        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:row -1 inSection:0];
+        [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionNone animated:NO];
+    }
 }
 
 #pragma mark - propaty
@@ -99,6 +145,7 @@
     }
 }
 
+
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -110,27 +157,17 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return ceil((float)_assets.count /4 ); // there are four photos per row.
+    return ceil((float)_assets.count /self.columnCount ); // there are four photos per row.
 }
 
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
 {
-    
-    NSUInteger firstPhotoInCell = indexPath.row * 4;
-    NSUInteger lastPhotoInCell  = firstPhotoInCell + 4;
+    NSUInteger firstPhotoInCell = indexPath.row * self.columnCount;
+    NSUInteger lastPhotoInCell  = firstPhotoInCell + self.columnCount;
     FNAAlbumContentsTableViewCell *acell = (FNAAlbumContentsTableViewCell *)cell;
-    acell.photo1.image = nil;
-    acell.photo1.backgroundColor = nil;
-    acell.photo2.image = nil;
-    acell.photo2.backgroundColor = nil;
-    acell.photo3.image = nil;
-    acell.photo3.backgroundColor = nil;
-    acell.photo4.image = nil;
-    acell.photo4.backgroundColor = nil;
-    acell.photoButton1.enabled = NO;
-    acell.photoButton2.enabled = NO;
-    acell.photoButton3.enabled = NO;
-    acell.photoButton4.enabled = NO;
+    [cell prepareForReuse];
+    acell.columnCount = self.columnCount;
+    //NSLog(@"acell:%@",acell);
     acell.rowNumber = indexPath.row;
     
     if (_assets.count > firstPhotoInCell) {
@@ -148,34 +185,7 @@
             }
             UIImage *thumbnail = [UIImage imageWithCGImage:thumbnailImageRef];
             
-            switch (currentPhotoIndex) {
-                case 0:
-                    acell.photo1.image = thumbnail;
-                    acell.photo1.backgroundColor = [UIColor blackColor];
-                    acell.photoButton1.tag = firstPhotoInCell + currentPhotoIndex ;
-                    acell.photoButton1.enabled = YES;
-                    break;
-                case 1:
-                    acell.photo2.image = thumbnail;
-                    acell.photo2.backgroundColor = [UIColor blackColor];
-                    acell.photoButton2.tag = firstPhotoInCell + currentPhotoIndex;
-                    acell.photoButton2.enabled = YES;
-                    break;
-                case 2:
-                    acell.photo3.image = thumbnail;
-                    acell.photo3.backgroundColor = [UIColor blackColor];
-                    acell.photoButton3.tag = firstPhotoInCell + currentPhotoIndex;
-                    acell.photoButton3.enabled = YES;
-                    break;
-                case 3:
-                    acell.photo4.image = thumbnail;
-                    acell.photo4.backgroundColor = [UIColor blackColor];
-                    acell.photoButton4.tag = firstPhotoInCell + currentPhotoIndex;
-                    acell.photoButton4.enabled = YES;
-                    break;
-                default:
-                    break;
-            }
+            [acell setThumbnail:thumbnail atCurrentPhotoIndex:currentPhotoIndex firstPhotoInCell:(NSInteger)firstPhotoInCell delegate:self];
         }
     }
 }
@@ -192,7 +202,7 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    NSUInteger tag = [(UIButton *)sender tag];
+    NSUInteger tag = [(UIView *)sender tag];
     ALAsset *asset = [_assets objectAtIndex:tag];
     [[segue destinationViewController] setAsset:asset];
 
@@ -213,5 +223,15 @@
 
 - (IBAction)toggleThumbnail:(id)sender {
     self.useAspectRatioThumbnail = !self.useAspectRatioThumbnail;
+}
+
+#pragma mark - FNAImagePickerThumbnailView delegate
+- (void)thumbnailImageViewWasSelected:(FNAImagePickerThumbnailView *)thumbnailView
+{
+    [thumbnailView clearSelection];
+
+    _lastSeletedPhotoIndex = thumbnailView.tag;
+    
+    [self performSegueWithIdentifier:@"ShowImagePickerDetailView" sender:thumbnailView];
 }
 @end

@@ -60,7 +60,7 @@
         
     };
     
-    NSUInteger groupTypes = ALAssetsGroupSavedPhotos |ALAssetsGroupAlbum;
+    NSUInteger groupTypes = ALAssetsGroupSavedPhotos |ALAssetsGroupAlbum |ALAssetsGroupAll;
     [_assetsLibrary enumerateGroupsWithTypes:groupTypes usingBlock:listGroupBlock failureBlock:failureBlock];
 }
 

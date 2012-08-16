@@ -8,12 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import <AssetsLibrary/AssetsLibrary.h>
+#import "FNAImagePickerThumbnailView.h"
 
 
-
-@interface FNAAlbumContentsViewController : UITableViewController
+@interface FNAAlbumContentsViewController : UITableViewController<FNAImagePickerThumbnailViewDelegate>
 
 @property (nonatomic, retain) ALAssetsGroup *assetsGroup;
 @property (nonatomic, assign) BOOL useAspectRatioThumbnail;
+@property (nonatomic, assign) NSUInteger columnCount;
 - (IBAction)toggleThumbnail:(id)sender;
 @end

@@ -43,10 +43,6 @@
 
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
-}
 
 - (void)cancel{
     [[UIApplication sharedApplication] setStatusBarStyle:self.orgStatusBarStyle];// スタイルもどす

@@ -7,18 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "FNAImagePickerThumbnailView.h"
+
 
 @interface FNAAlbumContentsTableViewCell : UITableViewCell
 
-@property (nonatomic,weak) IBOutlet UIImageView *photo1;
-@property (nonatomic,weak) IBOutlet UIImageView *photo2;
-@property (nonatomic,weak) IBOutlet UIImageView *photo3;
-@property (nonatomic,weak) IBOutlet UIImageView *photo4;
-@property (weak, nonatomic) IBOutlet UIButton *photoButton1;
-@property (weak, nonatomic) IBOutlet UIButton *photoButton2;
-@property (weak, nonatomic) IBOutlet UIButton *photoButton3;
-@property (weak, nonatomic) IBOutlet UIButton *photoButton4;
 
+
+@property (nonatomic, assign) NSUInteger columnCount;
 @property (nonatomic, assign) NSUInteger rowNumber;
 
+- (void)setThumbnail:(UIImage *)thumbnail atCurrentPhotoIndex:(NSUInteger)currentPhotoIndex firstPhotoInCell:(NSInteger)firstPhotoInCell delegate:(id<FNAImagePickerThumbnailViewDelegate>)delegate;
 @end
