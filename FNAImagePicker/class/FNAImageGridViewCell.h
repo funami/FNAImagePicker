@@ -7,7 +7,13 @@
 //
 
 #import "AQGridViewCell.h"
+#import "FNAImagePickerThumbnailView.h"
 
 @interface FNAImageGridViewCell : AQGridViewCell
 
+{
+    FNAImagePickerThumbnailView * _imageView;
+}
+@property (nonatomic, retain) UIImage * image;
+@property (nonatomic, assign) id<FNAImagePickerThumbnailViewDelegate>delegate;
 @end

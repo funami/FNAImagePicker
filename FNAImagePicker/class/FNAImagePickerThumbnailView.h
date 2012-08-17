@@ -15,6 +15,6 @@
 @interface FNAImagePickerThumbnailView : UIImageView
 @property (nonatomic,assign) id delegate;
 
-- (void)clearSelection;
+//- (void)clearSelection;
 
 @end

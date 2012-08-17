@@ -8,13 +8,16 @@
 
 #import <UIKit/UIKit.h>
 #import <AssetsLibrary/AssetsLibrary.h>
+#import "AQGridView.h"
 #import "FNAImagePickerThumbnailView.h"
 
 
-@interface FNAAlbumContentsViewController : UITableViewController<FNAImagePickerThumbnailViewDelegate>
+@interface FNAAlbumContentsViewController : UIViewController<AQGridViewDelegate, AQGridViewDataSource>
+{
+    IBOutlet AQGridView * _gridView;
+}
 
 @property (nonatomic, retain) ALAssetsGroup *assetsGroup;
 @property (nonatomic, assign) BOOL useAspectRatioThumbnail;
-@property (nonatomic, assign) NSUInteger columnCount;
 - (IBAction)toggleThumbnail:(id)sender;
 @end

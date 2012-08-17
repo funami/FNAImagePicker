@@ -35,7 +35,7 @@
 
 
 #pragma mark - Touch handling
-
+/*
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     [self.highlightView setImage:self.image];
     [self addSubview:self.highlightView];
@@ -53,6 +53,6 @@
     [_highlightView removeFromSuperview];
 }
 
-
+*/
 
 @end

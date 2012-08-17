@@ -11,6 +11,7 @@
 #import "FNAImagePickerController.h"
 #import <MobileCoreServices/MobileCoreServices.h>
 #import "FNAImagePickerDetailViewController.h"
+#import "FNAImageGridViewCell.h"
 
 #define DEFAULT_LANDSCAPE_COLUMN_NUMBER 6
 #define DEFAULT_PORTLATE_COLUMN_NUMBER 4
@@ -21,20 +22,12 @@
 }
 @property (nonatomic,strong) NSMutableArray *assets;
 @property (nonatomic,assign) FNAImagePickerThumbnailView *lastSeletedThumbnailView;
+- (void)configureCell:(FNAImageGridViewCell *)cell atIndex:(NSUInteger)index;
 @end
 
 @implementation FNAAlbumContentsViewController
 
 #pragma mark View lifecycle
-
-- (id)initWithStyle:(UITableViewStyle)style
-{
-    self = [super initWithStyle:style];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
 
 - (void)viewDidLoad
 {
@@ -46,6 +39,8 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     _lastSeletedPhotoIndex = NSNotFound;
+    _gridView.delegate = self;
+    _gridView.dataSource = self;
 }
 
 - (void)viewDidUnload
@@ -65,20 +60,11 @@
     switch (toInterfaceOrientation) {
         case UIInterfaceOrientationLandscapeLeft:
         case UIInterfaceOrientationLandscapeRight:
-            self.columnCount = DEFAULT_LANDSCAPE_COLUMN_NUMBER;
             break;
             
         default:
-            self.columnCount = DEFAULT_PORTLATE_COLUMN_NUMBER;
             break;
     }
-    [self.tableView reloadData];
-    if (_lastSeletedPhotoIndex != NSNotFound){
-        NSUInteger row = floor(_lastSeletedPhotoIndex /self.columnCount );
-        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:row -1 inSection:0];
-        [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionMiddle animated:NO];
-    }
-   
 }
 
 - (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation duration:(NSTimeInterval)duration
@@ -91,11 +77,9 @@
     switch (self.interfaceOrientation) {
         case UIInterfaceOrientationLandscapeLeft:
         case UIInterfaceOrientationLandscapeRight:
-            self.columnCount = DEFAULT_LANDSCAPE_COLUMN_NUMBER;
             break;
             
         default:
-            self.columnCount = DEFAULT_PORTLATE_COLUMN_NUMBER;
             break;
     }
     
@@ -126,12 +110,8 @@
     }
     
     [_assetsGroup enumerateAssetsUsingBlock:assetsEnumerationBlock];
-    [self.tableView reloadData];
-    if (_lastSeletedPhotoIndex != NSNotFound){
-        NSUInteger row = floor(_lastSeletedPhotoIndex /self.columnCount );
-        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:row -1 inSection:0];
-        [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionNone animated:NO];
-    }
+    [_gridView reloadData];
+
 }
 
 #pragma mark - propaty
@@ -139,99 +119,82 @@
 {
     if (_useAspectRatioThumbnail != useAspectRatioThumbnail){
         _useAspectRatioThumbnail = useAspectRatioThumbnail;
-        for (UITableViewCell* cell in [self.tableView visibleCells]) {
-            [self configureCell:cell atIndexPath:[self.tableView indexPathForCell:cell]];
+        
+        
+        for (FNAImageGridViewCell* cell in [_gridView visibleCells]) {
+            [self configureCell:cell atIndex:[_gridView indexForCell:cell]];
         }
+        
     }
 }
 
+#pragma mark -
+#pragma mark Grid View Data Source
 
-#pragma mark - Table view data source
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+- (NSUInteger) numberOfItemsInGridView: (AQGridView *) aGridView
 {
-    // Return the number of sections.
-    return 1;
+    return _assets.count;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+- (void)configureCell:(FNAImageGridViewCell *)cell atIndex:(NSUInteger)index
 {
-    // Return the number of rows in the section.
-    return ceil((float)_assets.count /self.columnCount ); // there are four photos per row.
-}
-
-- (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
-{
-    NSUInteger firstPhotoInCell = indexPath.row * self.columnCount;
-    NSUInteger lastPhotoInCell  = firstPhotoInCell + self.columnCount;
-    FNAAlbumContentsTableViewCell *acell = (FNAAlbumContentsTableViewCell *)cell;
-    [cell prepareForReuse];
-    acell.columnCount = self.columnCount;
-    //NSLog(@"acell:%@",acell);
-    acell.rowNumber = indexPath.row;
-    
-    if (_assets.count > firstPhotoInCell) {
-    
-        NSUInteger currentPhotoIndex = 0;
-        NSUInteger lastPhotoIndex = MIN(lastPhotoInCell, _assets.count);
-        for ( ; firstPhotoInCell + currentPhotoIndex < lastPhotoIndex ; currentPhotoIndex++) {
-            
-            ALAsset *asset = [_assets objectAtIndex:firstPhotoInCell + currentPhotoIndex];
-            CGImageRef thumbnailImageRef ;
-            if (_useAspectRatioThumbnail){
-                thumbnailImageRef = [asset aspectRatioThumbnail];
-            }else{
-                thumbnailImageRef = [asset thumbnail];
-            }
-            UIImage *thumbnail = [UIImage imageWithCGImage:thumbnailImageRef];
-            
-            [acell setThumbnail:thumbnail atCurrentPhotoIndex:currentPhotoIndex firstPhotoInCell:(NSInteger)firstPhotoInCell delegate:self];
-        }
+    ALAsset *asset = [_assets objectAtIndex:index];
+    CGImageRef thumbnailImageRef ;
+    if (_useAspectRatioThumbnail){
+        thumbnailImageRef = [asset aspectRatioThumbnail];
+    }else{
+        thumbnailImageRef = [asset thumbnail];
     }
+    UIImage *thumbnail = [UIImage imageWithCGImage:thumbnailImageRef];
+    cell.image = thumbnail;
+    //cell.delegate = self;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+- (AQGridViewCell *) gridView: (AQGridView *) aGridView cellForItemAtIndex: (NSUInteger) index
 {
-    static NSString *CellIdentifier = @"FNAAlbumContentsTableViewCell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    static NSString *CellIdentifier = @"FNAImageGridViewCell";
     
-    // Configure the cell...
-    [self configureCell:cell atIndexPath:indexPath];
-    return cell;
+    FNAImageGridViewCell * cell = nil;
+
+    cell = (FNAImageGridViewCell *)[aGridView dequeueReusableCellWithIdentifier: CellIdentifier];
+    if ( cell == nil )
+    {
+        cell = [[FNAImageGridViewCell alloc] initWithFrame: CGRectMake(0.0, 0.0, 75.0, 75.0)
+                                                 reuseIdentifier: CellIdentifier];
+        cell.selectionGlowColor = [UIColor blueColor];
+    }
+    [self configureCell:cell atIndex:index];
+    return ( cell );
 }
+
+- (CGSize) portraitGridCellSizeForGridView: (AQGridView *) aGridView
+{
+    return ( CGSizeMake(77.0, 78.0) );
+}
+
+#pragma mark -
+#pragma mark Grid View Delegate
+
+- (void) gridView: (AQGridView *) gridView didSelectItemAtIndex: (NSUInteger) index
+{
+    
+    [self performSegueWithIdentifier:@"ShowImagePickerDetailView" sender:gridView];
+
+}
+
+
+#pragma mark - UIViewController
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    NSUInteger tag = [(UIView *)sender tag];
+    NSUInteger tag = [(AQGridView *)sender indexOfSelectedItem];
     ALAsset *asset = [_assets objectAtIndex:tag];
     [[segue destinationViewController] setAsset:asset];
 
-}
-
-#pragma mark - Table view delegate
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Navigation logic may go here. Create and push another view controller.
-    /*
-     <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-     // ...
-     // Pass the selected object to the new view controller.
-     [self.navigationController pushViewController:detailViewController animated:YES];
-     */
 }
 
 - (IBAction)toggleThumbnail:(id)sender {
     self.useAspectRatioThumbnail = !self.useAspectRatioThumbnail;
 }
 
-#pragma mark - FNAImagePickerThumbnailView delegate
-- (void)thumbnailImageViewWasSelected:(FNAImagePickerThumbnailView *)thumbnailView
-{
-    [thumbnailView clearSelection];
-
-    _lastSeletedPhotoIndex = thumbnailView.tag;
-    
-    [self performSegueWithIdentifier:@"ShowImagePickerDetailView" sender:thumbnailView];
-}
 @end

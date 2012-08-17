@@ -38,7 +38,24 @@
     NSLog(@"assetRepresentation:%d",[assetRepresentation orientation]);
     
     self.imageView.image = fullScreenImage;
+    
 }
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    self.navigationController.navigationBar.barStyle = UIBarStyleBlackTranslucent;
+    self.navigationController.toolbar.barStyle = UIBarStyleBlackTranslucent;
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
+    self.navigationController.toolbar.barStyle = UIBarStyleBlack;
+}
+
+
 
 - (void)viewDidUnload
 {
