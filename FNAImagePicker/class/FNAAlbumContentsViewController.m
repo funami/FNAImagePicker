@@ -19,6 +19,7 @@
 @interface FNAAlbumContentsViewController ()
 {
     NSUInteger _lastSeletedPhotoIndex;
+    
 }
 @property (nonatomic,strong) NSMutableArray *assets;
 @property (nonatomic,assign) FNAImagePickerThumbnailView *lastSeletedThumbnailView;
@@ -39,6 +40,7 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     _lastSeletedPhotoIndex = NSNotFound;
+    _sizeLevel = 1;
     _gridView.delegate = self;
     _gridView.dataSource = self;
 }
@@ -128,6 +130,14 @@
     }
 }
 
+- (void)setSizeLevel:(CGFloat)sizeLevel
+{
+    if (_sizeLevel != sizeLevel){
+        _sizeLevel = sizeLevel;
+        [_gridView reloadData];
+    }
+}
+
 #pragma mark -
 #pragma mark Grid View Data Source
 
@@ -152,14 +162,14 @@
 
 - (AQGridViewCell *) gridView: (AQGridView *) aGridView cellForItemAtIndex: (NSUInteger) index
 {
-    static NSString *CellIdentifier = @"FNAImageGridViewCell";
+    NSString *CellIdentifier = [NSString stringWithFormat:@"FNAImageGridViewCell%f",_sizeLevel];
     
     FNAImageGridViewCell * cell = nil;
 
     cell = (FNAImageGridViewCell *)[aGridView dequeueReusableCellWithIdentifier: CellIdentifier];
     if ( cell == nil )
     {
-        cell = [[FNAImageGridViewCell alloc] initWithFrame: CGRectMake(0.0, 0.0, 75.0, 75.0)
+        cell = [[FNAImageGridViewCell alloc] initWithFrame: CGRectMake(0.0, 0.0, 76.0*_sizeLevel, 76.0*_sizeLevel)
                                                  reuseIdentifier: CellIdentifier];
         cell.selectionGlowColor = [UIColor blueColor];
     }
@@ -169,7 +179,7 @@
 
 - (CGSize) portraitGridCellSizeForGridView: (AQGridView *) aGridView
 {
-    return ( CGSizeMake(77.0, 78.0) );
+    return ( CGSizeMake(78.0*_sizeLevel, 78.0*_sizeLevel) );
 }
 
 #pragma mark -
@@ -196,5 +206,14 @@
 - (IBAction)toggleThumbnail:(id)sender {
     self.useAspectRatioThumbnail = !self.useAspectRatioThumbnail;
 }
+
+- (IBAction)toggleSize:(id)sender {
+    if (self.sizeLevel == 1){
+        self.sizeLevel = 2;
+    }else{
+        self.sizeLevel = 1;
+    }
+}
+
 
 @end

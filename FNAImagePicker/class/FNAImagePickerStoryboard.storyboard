@@ -88,6 +88,11 @@
                                 <action selector="toggleThumbnail:" destination="Wql-ey-ASe" id="5I7-iy-6uj"/>
                             </connections>
                         </barButtonItem>
+                        <barButtonItem title="Size" id="XhR-YV-oqZ">
+                            <connections>
+                                <action selector="toggleSize:" destination="Wql-ey-ASe" id="bmk-rd-GaP"/>
+                            </connections>
+                        </barButtonItem>
                     </toolbarItems>
                     <navigationItem key="navigationItem" id="qz7-L2-Ypt"/>
                     <connections>

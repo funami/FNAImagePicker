@@ -18,6 +18,8 @@
     
     _imageView = [[FNAImagePickerThumbnailView alloc] initWithFrame: self.contentView.bounds];
     _imageView.contentMode = UIViewContentModeScaleAspectFit;
+    _imageView.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleWidth;
+    self.contentView.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleWidth; 
     [self.contentView addSubview: _imageView];
     
     return ( self );

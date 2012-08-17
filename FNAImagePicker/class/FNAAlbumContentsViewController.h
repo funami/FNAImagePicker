@@ -19,5 +19,7 @@
 
 @property (nonatomic, retain) ALAssetsGroup *assetsGroup;
 @property (nonatomic, assign) BOOL useAspectRatioThumbnail;
+@property (nonatomic,assign) CGFloat sizeLevel;
 - (IBAction)toggleThumbnail:(id)sender;
+- (IBAction)toggleSize:(id)sender;
 @end
