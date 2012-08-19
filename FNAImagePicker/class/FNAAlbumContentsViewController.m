@@ -101,9 +101,9 @@
 
 - (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation duration:(NSTimeInterval)duration
 {
-    _gridView.alpha = 0.2;
+    _gridView.alpha = 1.0;
     [_gridView scrollToItemAtIndex:_currentCenterCell atScrollPosition:AQGridViewScrollPositionTop animated:NO];
-    //_tempImageView.alpha = 0.5;
+    _tempImageView.alpha = 0.0;
 }
 
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
@@ -111,8 +111,8 @@
     [UIView animateWithDuration:0.3f animations:^{
         
         
-        _tempImageView.alpha = 0.0;
-        _gridView.alpha = 1.0;
+        //_tempImageView.alpha = 0.0;
+        //_gridView.alpha = 1.0;
     } completion:^(BOOL finished){
         [_tempImageView removeFromSuperview];
         _tempImageView = nil;
@@ -179,7 +179,14 @@
 {
     if (_sizeLevel != sizeLevel){
         _sizeLevel = sizeLevel;
+        NSArray *array = [_gridView visibleCells];
+        AQGridViewCell *cell = [array objectAtIndex:0];
+        _currentCenterCell = [_gridView indexForCell:cell];
         [_gridView reloadData];
+        
+        [_gridView scrollToItemAtIndex:_currentCenterCell atScrollPosition:AQGridViewScrollPositionTop animated:NO];
+
+        
     }
 }
 
