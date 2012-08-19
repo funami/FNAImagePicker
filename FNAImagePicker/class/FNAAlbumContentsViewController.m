@@ -12,6 +12,7 @@
 #import <MobileCoreServices/MobileCoreServices.h>
 #import "FNAImagePickerDetailViewController.h"
 #import "FNAImageGridViewCell.h"
+#import <QuartzCore/CALayer.h>
 
 #define DEFAULT_LANDSCAPE_COLUMN_NUMBER 6
 #define DEFAULT_PORTLATE_COLUMN_NUMBER 4
@@ -19,6 +20,8 @@
 @interface FNAAlbumContentsViewController ()
 {
     NSUInteger _lastSeletedPhotoIndex;
+    NSUInteger _currentCenterCell;
+    UIImageView *_tempImageView;
     
 }
 @property (nonatomic,strong) NSMutableArray *assets;
@@ -43,6 +46,8 @@
     _sizeLevel = 1;
     _gridView.delegate = self;
     _gridView.dataSource = self;
+    _gridView.separatorStyle =  AQGridViewCellSeparatorStyleSingleLine;
+
 }
 
 - (void)viewDidUnload
@@ -57,20 +62,61 @@
     //return (interfaceOrientation == UIInterfaceOrientationPortrait);
     return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
 }
+
+- (UIImage *)imageByCropping:(UIScrollView *)imageToCrop toRect:(CGRect)rect
+{
+    CGSize pageSize = rect.size;
+    UIGraphicsBeginImageContext(pageSize);
+    
+    CGContextRef resizedContext = UIGraphicsGetCurrentContext();
+    CGContextTranslateCTM(resizedContext, -imageToCrop.contentOffset.x, -imageToCrop.contentOffset.y);
+    [imageToCrop.layer renderInContext:resizedContext];
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    
+    UIGraphicsEndImageContext();
+    
+    return image;
+}
+
+
 - (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
 {
-    switch (toInterfaceOrientation) {
-        case UIInterfaceOrientationLandscapeLeft:
-        case UIInterfaceOrientationLandscapeRight:
-            break;
-            
-        default:
-            break;
+
+    UIImage *myImage = [self imageByCropping:_gridView toRect:[_gridView gridViewVisibleBounds]];
+    UIGraphicsEndImageContext();
+    if (_tempImageView){
+        [_tempImageView removeFromSuperview];
     }
+    _tempImageView = [[UIImageView alloc] initWithImage:myImage];
+    _tempImageView.alpha = 1.0;
+    [self.view addSubview:_tempImageView];
+    
+    NSArray *array = [_gridView visibleCells];
+    AQGridViewCell *cell = [array objectAtIndex:0];
+    _currentCenterCell = [_gridView indexForCell:cell];
+    
+    _gridView.alpha = 0.0;
+
 }
 
 - (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation duration:(NSTimeInterval)duration
 {
+    _gridView.alpha = 0.2;
+    [_gridView scrollToItemAtIndex:_currentCenterCell atScrollPosition:AQGridViewScrollPositionTop animated:NO];
+    //_tempImageView.alpha = 0.5;
+}
+
+- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
+{
+    [UIView animateWithDuration:0.3f animations:^{
+        
+        
+        _tempImageView.alpha = 0.0;
+        _gridView.alpha = 1.0;
+    } completion:^(BOOL finished){
+        [_tempImageView removeFromSuperview];
+        _tempImageView = nil;
+    }];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -121,7 +167,6 @@
 {
     if (_useAspectRatioThumbnail != useAspectRatioThumbnail){
         _useAspectRatioThumbnail = useAspectRatioThumbnail;
-        
         
         for (FNAImageGridViewCell* cell in [_gridView visibleCells]) {
             [self configureCell:cell atIndex:[_gridView indexForCell:cell]];
